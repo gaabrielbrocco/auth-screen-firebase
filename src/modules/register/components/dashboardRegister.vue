@@ -41,26 +41,35 @@
       </v-btn>
     </div>
   </v-snackbar>
-  <section style="padding: 90px 10px 80px">
+  <section :style="mobile ? 'padding: 10px 12px;' : 'padding: 65px 10px 80px;'">
     <v-row class="d-flex justify-center">
-      <v-col cols="8">
-        <v-card class="rounded-xl" min-height="800" color="#E9E9E9">
+      <v-col cols="12" lg="8" sm="12">
+        <v-card class="rounded-xl" min-height="785" color="#E9E9E9">
           <v-row>
-            <v-col cols="7" class="d-flex justify-center align-center">
-              <v-img :src="hello" height="500"></v-img>
+            <v-col cols="12" lg="7" class="d-flex justify-center align-center">
+              <v-img :src="hello" :height="mobile ? 180 : 500"></v-img>
             </v-col>
-            <v-col class="d-flex justify-end pa-5" cols="5">
+            <v-col class="d-flex justify-end pa-5" cols="12" lg="5" sm="12">
               <v-card
                 class="rounded-xl"
-                min-height="800"
-                min-width="550"
+                :min-height="mobile ? 570 : 800"
+                :style="
+                  mobile
+                    ? 'max-width: 340px; width: 100%;'
+                    : 'min-width: 550px;'
+                "
                 color="white"
                 elevation="0"
               >
                 <v-row class="d-flex justify-center">
                   <v-col
-                    cols="10"
-                    class="d-flex justify-center text-h4 font-weight-thin-bold mt-15 pt-15"
+                    cols="12"
+                    :class="
+                      mobile
+                        ? 'd-flex justify-center font-weight-thin-bold mt-5'
+                        : 'd-flex justify-center font-weight-thin-bold mt-15 pt-15'
+                    "
+                    :style="mobile ? 'font-size: 35px' : 'font-size: 40px'"
                   >
                     Olá, seja bem-vindo!
                   </v-col>
@@ -69,14 +78,31 @@
                   <v-col
                     cols="10"
                     class="d-flex justify-center font-weight-light"
-                    style="color: gray; font-size: 18px"
+                    :style="
+                      mobile
+                        ? 'color: gray; font-size: 15px'
+                        : 'color: gray; font-size: 18px'
+                    "
                   >
-                    Por favor, preencha seus dados para criar a conta
+                    Preencha seus dados para criar a conta
                   </v-col>
                 </v-row>
 
-                <v-row class="d-flex justify-center mt-10">
-                  <v-col cols="9" class="d-flex justify-center">
+                <v-row
+                  :class="
+                    mobile
+                      ? 'd-flex justify-center mt-2'
+                      : 'd-flex justify-center mt-10'
+                  "
+                >
+                  <v-col
+                    cols="9"
+                    :class="
+                      mobile
+                        ? 'd-flex justify-center pa-0'
+                        : 'd-flex justify-center'
+                    "
+                  >
                     <v-text-field
                       label="E-mail"
                       variant="underlined"
@@ -91,7 +117,14 @@
                 </v-row>
 
                 <v-row class="d-flex justify-center">
-                  <v-col cols="9" class="d-flex justify-center">
+                  <v-col
+                    cols="9"
+                    :class="
+                      mobile
+                        ? 'd-flex justify-center pa-0'
+                        : 'd-flex justify-center'
+                    "
+                  >
                     <v-text-field
                       label="Senha"
                       placeholder="Informe sua senha"
@@ -127,7 +160,7 @@
                       elevation="1"
                       color="black"
                       text="Cadastrar"
-                      min-width="350"
+                      :min-width="mobile ? 300 : 350"
                       :loading="controller.loading.value"
                       :disabled="controller.loading.value"
                       @click="controller.register"
@@ -136,7 +169,8 @@
                     ></v-btn>
                   </v-col>
                 </v-row>
-                <v-row class="d-flex justify-center">
+
+                <v-row v-if="!mobile" class="d-flex justify-center">
                   <v-col cols="9" class="d-flex justify-center">
                     <v-btn
                       class="rounded-xl text-none"
@@ -158,8 +192,29 @@
                     </v-btn>
                   </v-col>
                 </v-row>
+                <v-row v-if="mobile" class="d-flex justify-center">
+                  <v-col cols="12" class="d-flex justify-center">
+                    <v-btn
+                      class="rounded-xl text-none"
+                      elevation="1"
+                      size="50"
+                      color="#E9E9E9"
+                      min-width="300"
+                      :loading="controller.loading.value"
+                      @click="controller.signInWithGoogle"
+                      icon
+                      variant="text"
+                    >
+                      <v-avatar
+                        class="me-2"
+                        size="30"
+                        :image="logoGoogle"
+                      ></v-avatar>
+                    </v-btn>
+                  </v-col>
+                </v-row>
 
-                <v-row class="d-flex justify-center">
+                <v-row v-if="!mobile" class="d-flex justify-center">
                   <v-col cols="9" class="d-flex justify-center">
                     <div class="font-weight-light" style="color: gray">
                       Já possui uma conta?
@@ -171,6 +226,24 @@
                         Login
                       </router-link>
                     </div>
+                  </v-col>
+                </v-row>
+                <v-row v-if="mobile" class="d-flex justify-center">
+                  <v-col cols="9" class="d-flex justify-center">
+                    <div class="font-weight-light" style="color: gray">
+                      Já possui uma conta?
+                    </div>
+                  </v-col>
+                </v-row>
+                <v-row v-if="mobile" class="d-flex justify-center">
+                  <v-col cols="9" class="d-flex justify-center">
+                    <router-link
+                      to="/login"
+                      class="ml-1"
+                      style="color: black; text-decoration: underline"
+                    >
+                      Login
+                    </router-link>
                   </v-col>
                 </v-row>
               </v-card>
@@ -185,53 +258,11 @@
 <script setup>
 import logoGoogle from "../../../assets/logoGoogle.png";
 import hello from "../../../assets/hello.png";
+import { useDisplay } from "vuetify";
+
+const { mobile } = useDisplay();
 
 const { controller } = defineProps({
   controller: { type: Object, required: true },
 });
 </script>
-
-<!-- <template>
-  <div class="d-flex justify-center align-center fill-height">
-    <v-card class="mx-auto px-6 py-8" max-width="400" min-width="400">
-      <v-form
-        :disabled="controller.loading.value"
-        :readonly="controller.loading.value"
-      >
-
-        <br />
-
-        <v-btn
-          color="#5865f2"
-          size="large"
-          type="submit"
-          variant="elevated"
-          block
-          :loading="controller.loading.value"
-          :disabled="
-            !controller.password.value ||
-            controller.password.value.length < 6 ||
-            controller.loading.value
-          "
-          @click="controller.register"
-        >
-          Cadastrar
-        </v-btn>
-
-        <br />
-
-        <v-divider class="mx-10"></v-divider>
-
-        <div class="d-flex justify-center mt-3">
-          <button @click="controller.signInWithGoogle">
-            <v-avatar :image="logoGoogle"></v-avatar>
-          </button>
-        </div>
-
-        <p class="text-center mt-5">
-          Já possui uma conta? <a href="/login">Login</a>
-        </p>
-      </v-form>
-    </v-card>
-  </div>
-</template> -->
