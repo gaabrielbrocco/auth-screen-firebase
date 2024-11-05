@@ -41,7 +41,7 @@
                     cols="10"
                     class="d-flex justify-center text-h4 font-weight-thin-bold mt-15 pt-15"
                   >
-                    Seja bem-vindo de volta!
+                    Bem-vindo de volta!
                   </v-col>
                 </v-row>
                 <v-row class="d-flex justify-center">
@@ -50,7 +50,7 @@
                     class="d-flex justify-center font-weight-light"
                     style="color: gray; font-size: 18px"
                   >
-                    Por favor, preencha seus dados
+                    Preencha seus dados para realizar o login
                   </v-col>
                 </v-row>
 
@@ -69,7 +69,7 @@
                   </v-col>
                 </v-row>
 
-                <v-row class="d-flex justify-center mt-1">
+                <v-row class="d-flex justify-center">
                   <v-col cols="9" class="d-flex justify-center">
                     <v-text-field
                       label="Senha"

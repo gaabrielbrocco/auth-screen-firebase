@@ -12,6 +12,8 @@ const registerController = () => {
   const password = ref("");
   const loading = ref(false);
   const showPassword = ref(false);
+  const snackbar = ref(false);
+  const snackbarMessage = ref("");
   const regras = {
     required: (v) => !!v || "Obrigatório",
     validEmail: (v) => {
@@ -72,6 +74,8 @@ const registerController = () => {
     password,
     loading,
     showPassword,
+    snackbar,
+    snackbarMessage,
     regras,
     register,
     signInWithGoogle,
