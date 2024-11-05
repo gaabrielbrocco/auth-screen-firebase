@@ -13,6 +13,7 @@ const registerController = () => {
   const loading = ref(false);
   const showPassword = ref(false);
   const snackbar = ref(false);
+  const snackbarSucess = ref(false);
   const snackbarMessage = ref("");
   const regras = {
     required: (v) => !!v || "Obrigatório",
@@ -42,11 +43,14 @@ const registerController = () => {
       const auth = getAuth();
       await createUserWithEmailAndPassword(auth, email.value, password.value);
 
-      alert("Usuário criado com sucesso!");
+      snackbarMessage.value = "Usuário criado com sucesso!";
+      snackbarSucess.value = true;
 
       router.push("/");
     } catch (error) {
-      alert(errorMessages[error.code] || "Erro ao criar o usuário!");
+      snackbarMessage.value =
+        errorMessages[error.code] || "Erro ao registrar o usuário!";
+      snackbar.value = true;
     } finally {
       loading.value = false;
     }
@@ -59,11 +63,13 @@ const registerController = () => {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(getAuth(), provider);
 
-      alert("Usuário criado com sucesso!");
+      snackbarMessage.value = "Usuário criado com sucesso!";
+      snackbarSucess.value = true;
 
       router.push("/");
     } catch (error) {
-      alert(error);
+      snackbarMessage.value = "Erro ao registrar o usuário!";
+      snackbar.value = true;
     } finally {
       loading.value = false;
     }
@@ -75,6 +81,7 @@ const registerController = () => {
     loading,
     showPassword,
     snackbar,
+    snackbarSucess,
     snackbarMessage,
     regras,
     register,

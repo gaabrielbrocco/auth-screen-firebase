@@ -20,6 +20,27 @@
       </v-btn>
     </div>
   </v-snackbar>
+  <v-snackbar
+    v-model="controller.snackbarSucess.value"
+    timeout="3000"
+    color="green"
+    location="top"
+    class="mt-10"
+    min-height="70"
+  >
+    <div
+      class="d-flex justify-space-between align-center"
+      style="font-size: 16px"
+    >
+      <div>{{ controller.snackbarMessage.value }}</div>
+      <v-btn
+        icon="mdi-close"
+        variant="text"
+        @click="controller.snackbarSucess.value = false"
+      >
+      </v-btn>
+    </div>
+  </v-snackbar>
   <section style="padding: 90px 10px 80px">
     <v-row class="d-flex justify-center">
       <v-col cols="8">

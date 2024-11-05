@@ -59,7 +59,8 @@ const loginController = () => {
 
       router.push("/");
     } catch (error) {
-      alert(error);
+      snackbarMessage.value = "Erro ao fazer o login!";
+      snackbar.value = true;
     } finally {
       loading.value = false;
     }
