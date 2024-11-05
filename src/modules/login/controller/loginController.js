@@ -55,14 +55,11 @@ const loginController = () => {
       loading.value = true;
 
       const provider = new GoogleAuthProvider();
-      console.log("provider", provider);
 
       await signInWithPopup(auth, provider);
 
       router.push("/");
     } catch (error) {
-      console.log(error);
-      console.log(error.code);
       snackbarMessage.value = "Erro ao fazer o login!";
       snackbar.value = true;
     } finally {
