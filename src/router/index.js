@@ -3,6 +3,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Login from "../modules/login/view/login.vue";
 import Register from "../modules/register/view/register.vue";
 import Home from "../modules/home/view/home.vue";
+import AcessoNegado from "@/modules/acessoNegado/view/acessoNegado.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -24,6 +25,15 @@ const router = createRouter({
       path: "/cadastro",
       name: "Register",
       component: Register,
+    },
+    {
+      path: "/acesso-negado",
+      name: "Unauthorized",
+      component: AcessoNegado,
+    },
+    {
+      path: "/:catchAll(.*)",
+      redirect: { name: "Unauthorized" },
     },
   ],
 });
@@ -48,8 +58,7 @@ router.beforeEach(async (to, from, next) => {
     if (currentUser) {
       next();
     } else {
-      alert("Você não tem acesso a essa página, por favor, autentique-e!");
-      next("/login");
+      next("/acesso-negado");
     }
   } else if (currentUser && (to.path === "/login" || to.path === "/cadastro")) {
     next("/");

@@ -7,8 +7,17 @@
     class="mt-10"
     min-height="70"
   >
-    <div class="d-flex justify-start" style="font-size: 16px">
-      {{ controller.snackbarMessage.value }}
+    <div
+      class="d-flex justify-space-between align-center"
+      style="font-size: 16px"
+    >
+      <div>{{ controller.snackbarMessage.value }}</div>
+      <v-btn
+        icon="mdi-close"
+        variant="text"
+        @click="controller.snackbar.value = false"
+      >
+      </v-btn>
     </div>
   </v-snackbar>
   <section style="padding: 90px 10px 80px">
@@ -94,7 +103,7 @@
                     <v-btn
                       class="rounded-xl"
                       size="50"
-                      elevation="1s"
+                      elevation="1"
                       color="black"
                       text="Entrar"
                       min-width="350"
@@ -150,40 +159,11 @@
       </v-col>
     </v-row>
   </section>
-
-  <!-- <div class="d-flex justify-center align-center fill-height">
-    <v-card class="mx-auto px-6 py-8" max-width="400" min-width="300">
-      <v-form
-        :disabled="controller.loading.value"
-        :readonly="controller.loading.value"
-      >
-
-        <p v-if="controller.errMsg.value" class="text-red text-center">
-          {{ controller.errMsg.value }}
-        </p>
-
-        <br />
-
-        <v-divider class="mx-10"></v-divider>
-
-        <div class="d-flex justify-center mt-3">
-          <button @click="controller.signInWithGoogle">
-            <v-avatar :image="logoGoogle"></v-avatar>
-          </button>
-        </div>
-
-        <p class="text-center mt-5">
-          Ainda não possui uma conta? <a href="/cadastro">Cadastre-se</a>
-        </p>
-      </v-form>
-    </v-card>
-  </div> -->
 </template>
 
 <script setup>
 import logoGoogle from "../../../assets/logoGoogle.png";
 import login from "../../../assets/login.png";
-import imagem from "../../../assets/imagem.png";
 
 const { controller } = defineProps({
   controller: { type: Object, required: true },
