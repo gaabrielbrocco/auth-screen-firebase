@@ -5,7 +5,7 @@ import { initializeApp } from "firebase/app";
 import router from "./router";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC5dh-hyDrMcZyqzeAvxZ2Z5xkbyjUyviw",
+  apiKey: import.meta.env.VITE_API_KEY,
   authDomain: "auth-screen-firebase.firebaseapp.com",
   projectId: "auth-screen-firebase",
   storageBucket: "auth-screen-firebase.firebasestorage.app",
