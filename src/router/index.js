@@ -32,8 +32,9 @@ const router = createRouter({
       component: AcessoNegado,
     },
     {
-      path: "/:catchAll(.*)",
-      redirect: { name: "Unauthorized" },
+      path: "/:pathMatch(.*)*",
+      name: "Unauthorized",
+      component: AcessoNegado,
     },
   ],
 });
