@@ -13,17 +13,19 @@ const loginController = () => {
   const errMsg = ref("");
   const loading = ref(false);
   const showPassword = ref(false);
-  const isValidEmail = (email) => {
-    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return pattern.test(email);
-  };
-
+  const snackbar = ref(false);
+  const snackbarMessage = ref("");
   const router = useRouter();
   const auth = getAuth();
 
   const regras = {
     required: (v) => (v ? true : "Campo obrigatório"),
     validEmail: (v) => (v && isValidEmail(v) ? true : "E-mail inválido"),
+  };
+
+  const isValidEmail = (email) => {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
   };
 
   const login = async () => {
@@ -40,7 +42,9 @@ const loginController = () => {
       await signInWithEmailAndPassword(auth, email.value, password.value);
       router.push("/");
     } catch (error) {
-      errMsg.value = errorMessages[error.code] || "E-mail ou senha incorretos!";
+      snackbarMessage.value =
+        errorMessages[error.code] || "E-mail ou senha incorretos!";
+      snackbar.value = true;
     } finally {
       loading.value = false;
     }
@@ -66,6 +70,8 @@ const loginController = () => {
     password,
     errMsg,
     loading,
+    snackbar,
+    snackbarMessage,
     showPassword,
     regras,
     isValidEmail,

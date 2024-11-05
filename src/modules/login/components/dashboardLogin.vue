@@ -1,11 +1,15 @@
 <template>
-  <v-snackbar v-model="snackbar" timeout="3000">
-    {{ snackbarMessage }}
-    <template v-slot:action="{ attrs }">
-      <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
-        Fechar
-      </v-btn>
-    </template>
+  <v-snackbar
+    v-model="controller.snackbar.value"
+    timeout="3000"
+    color="red"
+    location="top"
+    class="mt-10"
+    min-height="70"
+  >
+    <div class="d-flex justify-start" style="font-size: 16px">
+      {{ controller.snackbarMessage.value }}
+    </div>
   </v-snackbar>
   <section style="padding: 90px 10px 80px">
     <v-row class="d-flex justify-center">
