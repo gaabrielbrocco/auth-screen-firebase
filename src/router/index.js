@@ -59,7 +59,7 @@ router.beforeEach(async (to, from, next) => {
     if (currentUser) {
       next();
     } else {
-      next("/acesso-negado");
+      next("/login");
     }
   } else if (currentUser && (to.path === "/login" || to.path === "/cadastro")) {
     next("/");
