@@ -110,7 +110,6 @@
                       :loading="controller.loading.value"
                       :disabled="controller.loading.value"
                       @click="controller.login"
-                      type="submit"
                       block
                     ></v-btn>
                   </v-col>
@@ -125,7 +124,6 @@
                       min-width="350"
                       :loading="controller.loading.value"
                       @click="controller.signInWithGoogle"
-                      type="submit"
                       block
                     >
                       <v-avatar
