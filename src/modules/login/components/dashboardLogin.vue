@@ -181,11 +181,7 @@
                       icon
                       variant="text"
                     >
-                      <v-avatar
-                        class="me-2"
-                        size="30"
-                        :image="logoGoogle"
-                      ></v-avatar>
+                      <v-avatar size="30" :image="logoGoogle"></v-avatar>
                     </v-btn>
                   </v-col>
                 </v-row>

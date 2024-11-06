@@ -7,7 +7,7 @@
             <v-col cols="12" lg="7" class="d-flex justify-center align-center">
               <v-img :src="locked" :height="mobile ? 180 : 500"></v-img>
             </v-col>
-            <v-col class="d-flex justify-end pa-5" cols="12" lg="5" sm="12">
+            <v-col class="d-flex justify-center" cols="12" lg="5" sm="12">
               <v-card
                 class="rounded-xl"
                 :min-height="mobile ? 570 : 800"
