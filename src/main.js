@@ -10,8 +10,8 @@ const firebaseConfig = {
   projectId: "auth-screen-firebase",
   storageBucket: "auth-screen-firebase.firebasestorage.app",
   messagingSenderId: "757976656944",
-  appId: "1:757976656944:web:ec0425b159a519e58e91f5",
-  measurementId: "G-9ED1JSPL97",
+  appId: "1:757976656944:web:57789594e33727098e91f5",
+  measurementId: "G-S10GEKSEB8",
 };
 
 initializeApp(firebaseConfig);
